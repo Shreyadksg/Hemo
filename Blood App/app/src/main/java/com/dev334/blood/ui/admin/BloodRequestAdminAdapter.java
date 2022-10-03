@@ -36,7 +36,8 @@ import retrofit2.Response;
 
 public class BloodRequestAdminAdapter extends RecyclerView.Adapter<BloodRequestAdminAdapter.mViewHolder> {
     private List<Blood> bloods;
-
+    //creating  a view
+    View view1;
     private Context context;
     private String TAG="BloodRequestAdminAdapter";
     public BloodRequestAdminAdapter(List<Blood> bloods, Context context) {
@@ -50,7 +51,7 @@ public class BloodRequestAdminAdapter extends RecyclerView.Adapter<BloodRequestA
     @NonNull
     @Override
     public BloodRequestAdminAdapter.mViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.request_blood_admin, parent, false);
+       View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.request_blood_admin, parent, false);
         return new BloodRequestAdminAdapter.mViewHolder(view);
     }
 
@@ -64,7 +65,7 @@ public class BloodRequestAdminAdapter extends RecyclerView.Adapter<BloodRequestA
                   String phone=bloods.get(position).getPhone();
                   if(phone.equals("")){
                      // Toast.makeText(context.getApplicationContext(), "Phone number not provided", Toast.LENGTH_SHORT).show();
-                      View view =findViewById(android.R.id.content);
+                       view1 =findViewById(android.R.id.content);
                       Snackbar.make(view,"Phone number not provided",Snackbar.LENGTH_SHORT).show();
                   }else{
                       Intent intent =new Intent(Intent.ACTION_DIAL);
@@ -111,7 +112,7 @@ public class BloodRequestAdminAdapter extends RecyclerView.Adapter<BloodRequestA
                    notifyItemRangeChanged(actualPosition,bloods.size());
                   // Toast.makeText(context, "Request Verified", Toast.LENGTH_SHORT).show();
                    //replacing toast message with snackbar"
-                   View view=findViewById(android.R.id.content);
+                  view1=findViewById(android.R.id.content);
                    Snackbar.make(view,"Request verified",Snackbar.LENGTH_LONG).show();
 
                }
@@ -127,7 +128,7 @@ public class BloodRequestAdminAdapter extends RecyclerView.Adapter<BloodRequestA
                    notifyItemRangeChanged(actualPosition,bloods.size());
                   // Toast.makeText(context, "Request Declined", Toast.LENGTH_SHORT).show();
                    //replacing toast message with snackbar"
-                   View view=findViewById(android.R.id.content);
+                   view1 =findViewById(android.R.id.content);
                    Snackbar.make(view,"Request Declined",Snackbar.LENGTH_SHORT).show();
                }
            });
@@ -185,7 +186,7 @@ public class BloodRequestAdminAdapter extends RecyclerView.Adapter<BloodRequestA
                     Log.i(TAG, "onResponse: "+response.code());
                     Log.i(TAG, "onResponse: "+response.toString());
                    // Toast.makeText(context, "An error occurred", Toast.LENGTH_SHORT).show();
-                    View view=findViewById(android.R.id.content);
+                   view1 =findViewById(android.R.id.content);
                     Snackbar.make(view,"An error occured",Snackbar.LENGTH_SHORT).show();
                     return;
                 }
@@ -194,7 +195,7 @@ public class BloodRequestAdminAdapter extends RecyclerView.Adapter<BloodRequestA
                     Log.i(TAG, "onResponse: Successful");
                    // Toast.makeText(context, "Operation Successful", Toast.LENGTH_SHORT).show();
                     //replacing toast message with snackbar
-                    View view=findViewById(android.R.id.content);
+                    view1=findViewById(android.R.id.content);
                     Snackbar.make(view,"Operation Successfull",Snackbar.LENGTH_SHORT).show();
                 }
             }
